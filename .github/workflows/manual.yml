@@ -30,21 +30,36 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
       
+      
+      
+      
   testJob:
     name: Test
     runs-on: ubuntu-latest
+ 
+    
     steps:
-      - id: set_var
-        run: |
-          content1= `ls`
-          echo "$content1"
-      - run: |
-          content=`cat .test.json`
-          # the following lines are only required for multi line json
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          # end of optional handling for multi line json
-          echo "::set-output name=packageJson::$content"
-      - run: |
-          echo "${{fromJson(steps.set_var.outputs.packageJson).IMAGE_OS}}"
+      - name: Read package.json
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./test.json
+      - name: Echo test.json
+        run: echo "${{ steps.package.outputs.content }}"    
+      - run: echo "${{ fromJson(steps.package.outputs.content).IMAGE_OS }}"
+      
+      
+      #- id: set_var
+      #  run: |
+      #    content1= `ls`
+      #    echo "$content1"
+      #- run: |
+      #    content=`cat .test.json`
+      #    # the following lines are only required for multi line json
+      #    content="${content//'%'/'%25'}"
+      #    content="${content//$'\n'/'%0A'}"
+      #    content="${content//$'\r'/'%0D'}"
+      #    # end of optional handling for multi line json
+      #    echo "::set-output name=packageJson::$content"
+      #- run: |
+      #    echo "${{fromJson(steps.set_var.outputs.packageJson).IMAGE_OS}}"
