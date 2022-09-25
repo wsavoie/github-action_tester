@@ -36,6 +36,9 @@ jobs:
     steps:
       - id: set_var
         run: |
+          content1= `ls`
+          echo "$content1"
+        run: |
           content=`cat .test.json`
           # the following lines are only required for multi line json
           content="${content//'%'/'%25'}"
