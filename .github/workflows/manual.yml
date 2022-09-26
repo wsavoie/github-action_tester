@@ -42,7 +42,8 @@ jobs:
         run: |
           json='${{ steps.package.outputs.content }}'
           echo $json
-          j2=fromJSON(${json}) 
+          echo "convert to json"
+          j2=fromJSON($json) 
           echo $j2
           # matrix=$json | json2yaml  
           echo $matrix
