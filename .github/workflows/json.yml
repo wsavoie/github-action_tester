@@ -31,14 +31,9 @@ jobs:
           path: ./test.json
       - id: set-matrix
         run: |
-          JSON=$(cat ./test.json)
           j2=$(cat ./test.json | jq -c .)
           j3=${j2//'"'/'\"'}
-          echo $JSON
-          echo $j2
           echo $j3
-          
-          echo "hello from here"
           echo "::set-output name=matrix::$( echo "$j3" )"
           
   check-matrix:
@@ -47,7 +42,7 @@ jobs:
     steps:
       - name: Check matrix definition
         run: |
-          matrix="$(( needs.matrix.outputs.matrix ))"
+          matrix="${{ needs.matrix.outputs.matrix }}"
           echo "outputting raw value"
           echo $matrix
           echo "outputting pretty version"
