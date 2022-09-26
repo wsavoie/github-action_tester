@@ -31,20 +31,24 @@ jobs:
           path: ./test.json
       - id: set-matrix
         run: |
-          json='${{steps.package.outputs.content}}'
-          echo 'outputting raw content'
-          echo $json
-          echo $json | jq -c . >> blah
-          echo $blah
+          json2=$(cat ./test.json)
+          echo "::set-output name=matrix::${json//'%'/'%25'}"
           
-          echo "set matrix"
-          #echo "GITHUB_SHA_SHORT=$(echo '$json' | jq -c .)" >> $GITHUB_ENV
-          echo "finished saving into env"
-          echo $env.GITHUB_SHA_SHORT
-          matrix=${{ env.GITHUB_SHA_SHORT }}
+          
+          #json='${{steps.package.outputs.content}}'
+          #echo 'outputting raw content'
+          #echo $json
+          #$json | jq -c .
+          #echo $blah
+          
+          #echo "set matrix"
+          ##echo "GITHUB_SHA_SHORT=$(echo '$json' | jq -c .)" >> $GITHUB_ENV
+          #echo "finished saving into env"
+          #echo $env.GITHUB_SHA_SHORT
+          #matrix=${{ env.GITHUB_SHA_SHORT }}
           
           #matrix='${{ steps.package.outputs.content}}' | jq -c
-          echo "::set-output name=matrix::$matrix"
+          #echo "::set-output name=matrix::$matrix"
   check-matrix:
     runs-on: ubuntu-latest
     needs: matrix
