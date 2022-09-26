@@ -35,7 +35,10 @@ jobs:
           json='${{ steps.package.outputs.content }}'
           json2=$json | jq .
           echo "outputting json2"
-          echo json2
+          echo $json2
+          echo $json | json2yaml
+          
+          
      # - id: set-matrix
        # run: |
           #matrix=$((
