@@ -39,31 +39,7 @@ jobs:
           echo $j3
           
           echo "hello from here"
-          echo "::set-output name=matrix::$( echo "$j2" )"
-          #json2=${JSON//'"'/'\"'}
-          #echo '::set-output name=matrix::$json2'
-          #echo "print json without new lines"
-          #echo $json2
-          #json3=${json2//'%'/'%22'}
-          #echo "json3 replace quotes"
-          #echo $json3
-          #echo "::set-output name=matrix::${json//'%'/'%25'}"
-          
-          
-          #json='${{steps.package.outputs.content}}'
-          #echo 'outputting raw content'
-          #echo $json
-          #$json | jq -c .
-          #echo $blah
-          
-          #echo "set matrix"
-          ##echo "GITHUB_SHA_SHORT=$(echo '$json' | jq -c .)" >> $GITHUB_ENV
-          #echo "finished saving into env"
-          #echo $env.GITHUB_SHA_SHORT
-          #matrix=${{ env.GITHUB_SHA_SHORT }}
-          
-          #matrix='${{ steps.package.outputs.content}}' | jq -c
-          #echo "::set-output name=matrix::$matrix"
+          echo "::set-output name=matrix::$( echo "$j3" )
           
   check-matrix:
     runs-on: ubuntu-latest
