@@ -46,8 +46,11 @@ jobs:
           #echo $matrix
           echo "::set-output name=matrix::$( echo '$json' )"
           m= ${{ fromJSON('${json}') }}
-    strategy: 
-      matrix: $m
+          echo "correctly used fromJSON"
+          echo $m
+          
+    #strategy: 
+     # matrix: ${m}
   #setMatrix:
   #  name: BuildMatrix
   #  needs: testJob
