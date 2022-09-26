@@ -48,7 +48,7 @@ jobs:
           path: ./test.json
       - name: Echo test.json
         run: |
-          matrix="${{ steps.package.outputs.content }}"
+          matrix='${{ steps.package.outputs.content }}'
           echo $matrix
           echo "matrix set successfully"
           #echo $matrix | jq .
