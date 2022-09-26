@@ -33,6 +33,8 @@ jobs:
   testJob:
     name: Test
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{steps.package.outputs.matrix}}
 
     steps:
       - uses: actions/checkout@v3
@@ -48,12 +50,24 @@ jobs:
           path: ./test.json
       - name: Echo test.json
         run: |
-          matrix='${{ steps.package.outputs.content }}'
+          json='${{ steps.package.outputs.content }}'
+          echo $json
+          matrix=$json | json2yaml
           echo $matrix
-          echo "matrix set successfully"
-          #echo $matrix | jq .
-          echo $matrix | json2yaml     
-      
+          echo "::set-output name=matrix::$( echo '$json' )"
+
+  setMatrix:
+    name: Build matrix
+    needs: testJob
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:  ${{ fromJson( needs.testJob.outputs.matrix ) }}
+    steps:
+    - run: echo ${{ matrix.CUDA }}
+    - run: echo ${{ matrix.Image OS }
+    
+    
+        
       #- id: set_var
       #  run: |
       #    content1= `ls`
