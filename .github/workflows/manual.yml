@@ -41,14 +41,18 @@ jobs:
         run: |
           json='${{ steps.package.outputs.content }}'
           echo $json
-      - id: set-matrix
-        run: |
-          echo "::set-output name=matrix::${JSON//'%'/'%25'}"
+          echo "trying sed"
+          json2=${sed -i 's~"~/"~g' ${json}}
+          echo $json2
+          
+#      - id: set-matrix
+#        run: |
+#          echo "::set-output name=matrix::${JSON//'%'/'%25'}"
 
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
-    steps:
-    - run: build
+#  job2:
+#    needs: job1
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+#    steps:
+#    - run: build
