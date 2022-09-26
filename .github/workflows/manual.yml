@@ -45,11 +45,7 @@ jobs:
           echo "trying sed"
           json2='{\"IMAGE OS\":{ \"Ubuntu 18.04\":\"ubuntu18.04\", \"Ubuntu 20.04\":\"ubuntu20.04\" }, \"CUDA\":{ \"CUDA 10.2\":\"cuda10.2\", \"CUDA 11.3\":\"cuda11.3\" } }'
           echo $json2
-          
-      - id: set-matrix
-        run: |
           echo "::set-output name=matrix::${{json2}}"
-
   job2:
     needs: job1
     runs-on: ubuntu-latest
