@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Check matrix definition
         run: |
-          matrix='$(( needs.matrix.outputs.matrix ))'
+          matrix="$(( needs.matrix.outputs.matrix ))"
           echo "outputting raw value"
           echo $matrix
           echo "outputting pretty version"
