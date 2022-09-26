@@ -45,10 +45,10 @@ jobs:
           matrix=$json | json2yaml
           echo $matrix
           echo "finished task"
-          #echo "::set-output name=matrix::$( echo '$json' )"
-          #m= ${{ fromJSON(${json}) }}
-          #echo "correctly used fromJSON"
-          #echo $m
+    # echo "::set-output name=matrix::$( echo '$json' )"
+    # m= ${{ fromJSON(${json}) }}
+    # echo "correctly used fromJSON"
+    # echo $m
           
     #strategy: 
      # matrix: ${m}
