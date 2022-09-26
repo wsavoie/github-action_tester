@@ -30,15 +30,14 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
       
-      
-      
-      
   testJob:
     name: Test
     runs-on: ubuntu-latest
- 
+    
     
     steps:
+      - uses: actions/checkout@v3
+      
       - name: Read package.json
         id: package
         uses: juliangruber/read-file-action@v1
