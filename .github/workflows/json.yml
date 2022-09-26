@@ -31,6 +31,9 @@ jobs:
           path: ./test.json
       - id: set-matrix
         run: |
+          echo "PACKAGE_JSON=$(jq -c . < test.json)" >> $GITHUB_ENV
+          echo '${{ fromJson(env.PACKAGE_JSON).package }}'
+          
           json2=$(cat ./test.json)
           echo "::set-output name=matrix::${json//'%'/'%25'}"
           
