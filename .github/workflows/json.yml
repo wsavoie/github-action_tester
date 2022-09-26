@@ -42,13 +42,6 @@ jobs:
           echo $matrix
           echo "outputting pretty version"
           echo $matrix | jq
-
-      - id: set-yaml
-        run: |
-          matrix="${{ needs.GetFormattedJson.outputs.matrix }}"
-          yaml= $matrix | json2yaml
-          echo "outputting yml"
-          echo $yaml
           echo "outputting yaml version"
           echo $matrix | json2yaml
   backend:
