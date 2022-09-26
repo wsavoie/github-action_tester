@@ -37,7 +37,7 @@ jobs:
           echo "output single line"
           echo $json | jq -c
           echo "set matrix"
-          echo "GITHUB_SHA_SHORT=$(echo $json | jq -c)" >> $GITHUB_ENV
+          echo "GITHUB_SHA_SHORT=$(echo $json | jq -c .)" >> $GITHUB_ENV
           matrix=${{ env.GITHUB_SHA_SHORT }}
           
           #matrix='${{ steps.package.outputs.content}}' | jq -c
