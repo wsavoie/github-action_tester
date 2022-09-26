@@ -1,10 +1,10 @@
 {
-  "IMAGE_OS":{
-    "Ubuntu_18.04":"ubuntu18.04",
-    "Ubuntu_20.04":"ubuntu20.04"
+  "IMAGE OS":{
+    "Ubuntu 18.04":"ubuntu18.04",
+    "Ubuntu 20.04":"ubuntu20.04"
     },
   "CUDA":{
-    "CUDA_10.2":"cuda10.2",
-    "CUDA_11.3":"cuda11.3"
+    "CUDA 10.2":"cuda10.2",
+    "CUDA 11.3":"cuda11.3"
   }
 }
