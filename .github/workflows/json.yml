@@ -31,7 +31,7 @@ jobs:
           path: ./test.json
       - id: set-matrix
         run: |
-          json='$((steps.package.outputs.content))'
+          json='${{steps.package.outputs.content}| jq -c .}'
           echo 'outputting raw content'
           echo $json
           echo $json | jq -c .
