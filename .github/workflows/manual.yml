@@ -18,21 +18,20 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 
-jobs:
-    
-  testJob:
-    name: Test
-    runs-on: ubuntu-latest
-    #outputs:
-    #  matrix: ${{steps.package.outputs.matrix}}
 
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v3
       
       - name: install json2yml
         run: |
           sudo npm install -g json2yaml
-          
+        
       - name: Read package.json
         id: package
         uses: juliangruber/read-file-action@v1
@@ -41,6 +40,45 @@ jobs:
       - name: Echo test.json
         run: |
           json='${{ steps.package.outputs.content }}'
+      - id: set-matrix
+        run: |
+          echo "::set-output name=matrix::${JSON//'%'/'%25'}"
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+    steps:
+    - run: build
+
+
+
+
+
+
+jobs:
+  testJob:
+    name: testJob
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: install json2yml
+        run: |
+          sudo npm install -g json2yaml
+        
+      - name: Read package.json
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./test.json
+      - name: Echo test.json
+        run: |
+          json='${{ steps.package.outputs.content }}'
+      - name: Convert To matrix
+        run: |
+        
           echo $json
           echo "convert to json"
           j2=fromJSON($json) 
