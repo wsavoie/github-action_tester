@@ -35,23 +35,13 @@ jobs:
           json='${{ steps.package.outputs.content }}'
           echo "outputting json version"
           echo $json | jq .
-          echo "outputting j
+          echo "outputting json"
           echo $json | json2yaml
           echo "set matrix"
-         # matrix: ${{fromJSON(json)}}
-         # echo "print out matrix"
-         # echo $matrix     
+
       - id: set-matrix
         run: |
           matrix='${{ steps.package.outputs.content }}'
-          #matrix=$((
-          #  echo '{ "package" : ['
-          #  sed -n "/^REVDEP *:= */ { s///; p }" revdep-dev/Makefile | sed 's/ /, /g' | xargs -n 1 echo | sed -r 's/^([^,]*)(,?)$/"\1"\2/'
-          #  echo " ]}"
-          #) | jq -c .)
-          #echo $matrix
-          #echo $matrix | jq .
-          echo "::set-output name=matrix::$matrix"
   backend:
     runs-on: ubuntu-latest
     needs: matrix
