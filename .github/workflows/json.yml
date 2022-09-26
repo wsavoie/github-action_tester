@@ -30,8 +30,6 @@ jobs:
   check-matrix:
     runs-on: ubuntu-latest
     needs: GetFormattedJson
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.yaml }}
     steps:
       - name: install json2yaml
         run: |
@@ -51,12 +49,14 @@ jobs:
           yaml= $matrix | json2yaml
           echo "outputting yml"
           echo $yaml
+          echo "outputting yaml version"
+          echo $matrix | json2yaml
   backend:
     runs-on: ubuntu-latest
-    needs: check-matrix
+    needs: GetFormattedJson
     strategy:
       #fail-fast: false
-      matrix: ${{needs.check-matrix.outputs.yaml}}
+      matrix: ${{ fromJson(needs.check-matrix.outputs.yaml) }}
     steps: 
       - name: hi
         run: |
