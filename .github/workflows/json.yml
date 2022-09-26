@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v3
       - id: set-matrix
         run: |
-          j2=$(cat ./real.json | jq -c .)
+          j2=${cat ./real.json | jq -c .}
           j3=${j2//'"'/'\"'}
           echo $j3
           echo "::set-output name=matrix::$( echo "$j3" )"
