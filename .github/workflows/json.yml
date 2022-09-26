@@ -33,12 +33,15 @@ jobs:
       - name: read json
         run: |
           json='${{ steps.package.outputs.content }}'
-          json2=$json | jq .
-          echo "outputting json2"
-          echo $json2
+          echo "outputting json version"
+          echo $json | jq .
+          echo "outputting j
           echo $json | json2yaml
           
-          
+          echo "set matrix"
+          matrix: ${{fromJson($json)}}
+          echo "print out matrix"
+          echo $matrix     
      # - id: set-matrix
        # run: |
           #matrix=$((
