@@ -33,7 +33,7 @@ jobs:
         run: |
           JSON=$(cat ./test.json)
           j2=$(cat ./test.json | jq -c .)
-          j3=${j2//'%22'/'%5C%22'}
+          j3=${j2//'"'/'/"'}
           echo $JSON
           echo $j2
           echo $j3
