@@ -37,7 +37,7 @@ jobs:
           echo "output single line"
           echo $json | jq -c
           echo "set matrix"
-          matrix= $(( json ) | jq -c .)
+          matrix=${jq -c . json}
           #matrix='${{ steps.package.outputs.content}}' | jq -c
           echo "::set-output name=matrix::$matrix"
   check-matrix:
