@@ -31,11 +31,13 @@ jobs:
           path: ./test.json
       - id: set-matrix
         run: |
-          echo "PACKAGE_JSON=$(jq -c . < test.json)" >> $GITHUB_ENV
-          echo '${{ fromJson(env.PACKAGE_JSON).package }}'
-          
-          json2=$(cat ./test.json)
-          echo "::set-output name=matrix::${json//'%'/'%25'}"
+          #echo "PACKAGE_JSON=$(jq -c . < test.json)" >> $GITHUB_ENV
+          #echo '${{ fromJson(env.PACKAGE_JSON).package }}'
+          matrix=$(cat ./test.json | jq -c .)
+          echo "read from cat"
+          echo $matrix
+          echo '::set-output name=matrix::$matrix'
+          #echo "::set-output name=matrix::${json//'%'/'%25'}"
           
           
           #json='${{steps.package.outputs.content}}'
