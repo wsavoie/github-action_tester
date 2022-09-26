@@ -36,7 +36,7 @@ jobs:
           echo '::set-output name=matrix::$json2'
           echo "print json without new lines"
           echo $json2
-          json3=${json2//'%22'/'%5C%22'}
+          json3=${json2//'%'/'%22'}
           echo "json3 replace quotes"
           echo $json3
           #echo "::set-output name=matrix::${json//'%'/'%25'}"
