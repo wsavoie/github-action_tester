@@ -39,7 +39,7 @@ jobs:
           echo $j3
           
           echo "hello from here"
-          echo "::set-output name=matrix::$( echo "$j3" )
+          echo "::set-output name=matrix::$( echo "$j3" )"
           
   check-matrix:
     runs-on: ubuntu-latest
