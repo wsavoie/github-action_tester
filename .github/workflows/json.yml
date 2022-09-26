@@ -32,13 +32,18 @@ jobs:
       - id: set-matrix
         run: |
           JSON=$(cat ./test.json)
-          json2=${JSON//'%'/'%25'}
-          echo '::set-output name=matrix::$json2'
-          echo "print json without new lines"
-          echo $json2
-          json3=${json2//'%'/'%22'}
-          echo "json3 replace quotes"
-          echo $json3
+          j2=$(cat ./test.json | jq -c .)
+          
+          echo '$JSON'
+          echo $j2
+          
+          #json2=${JSON//'%'/'%25'}
+          #echo '::set-output name=matrix::$json2'
+          #echo "print json without new lines"
+          #echo $json2
+          #json3=${json2//'%'/'%22'}
+          #echo "json3 replace quotes"
+          #echo $json3
           #echo "::set-output name=matrix::${json//'%'/'%25'}"
           
           
