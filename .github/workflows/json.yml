@@ -33,7 +33,7 @@ jobs:
         run: |
           #echo "PACKAGE_JSON=$(jq -c . < test.json)" >> $GITHUB_ENV
           #echo '${{ fromJson(env.PACKAGE_JSON).package }}'
-          matrix=$(cat ./test.json | jq -c .)
+          matrix=${cat ./test.json | jq -c .}
           echo "read from cat"
           echo $matrix
           echo '::set-output name=matrix::$matrix'
