@@ -31,10 +31,9 @@ jobs:
           path: ./test.json
       - id: set-matrix
         run: |
-          matrix=${{cat ./test.json | jq -c .}}
-          echo "read from cat"
-          echo $matrix
-          echo '::set-output name=matrix::$matrix'
+          JSON=$(cat ./test.json)
+          echo "::set-output name=matrix::${JSON//'%'/'%25'}"
+          echo ${JSON//'%'/'%25'}
           #echo "::set-output name=matrix::${json//'%'/'%25'}"
           
           
