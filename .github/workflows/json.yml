@@ -33,10 +33,12 @@ jobs:
         run: |
           JSON=$(cat ./test.json)
           j2=$(cat ./test.json | jq -c .)
-          
+          j3=${j2//'%22'/'%5C%22'}
           echo $JSON
           echo $j2
+          echo $j3
           
+          echo "hello from here"
           echo "::set-output name=matrix::$( echo "$j2" )"
           #json2=${JSON//'%'/'%25'}
           #echo '::set-output name=matrix::$json2'
@@ -62,6 +64,7 @@ jobs:
           
           #matrix='${{ steps.package.outputs.content}}' | jq -c
           #echo "::set-output name=matrix::$matrix"
+          
   check-matrix:
     runs-on: ubuntu-latest
     needs: matrix
