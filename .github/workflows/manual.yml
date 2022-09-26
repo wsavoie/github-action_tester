@@ -40,9 +40,9 @@ jobs:
       - name: Echo test.json
         run: |
           json='${{ steps.package.outputs.content }}'
-          echo $json
+          echo $json 
           echo "trying sed"
-          json2=${sed -i 's~"~/"~g' ${json}}
+          json2= $json | ${sed -i 's~"~/"~g'}
           echo $json2
           
 #      - id: set-matrix
