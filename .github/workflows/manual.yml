@@ -61,7 +61,7 @@ jobs:
     needs: testJob
     runs-on: ubuntu-latest
     strategy:
-      matrix:  ${{ fromJson(needs.testJob.outputs.matrix) }}
+      matrix:  ${{ fromJSON(needs.testJob.outputs.matrix) }}
     steps:
     - run: echo ${{ matrix.CUDA }}
     
