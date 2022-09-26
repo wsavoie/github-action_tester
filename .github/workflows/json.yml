@@ -39,6 +39,7 @@ jobs:
           echo $json | json2yaml
           echo "set matrix"
           matrix='${{ steps.package.outputs.content }}'
+          echo "::set-output name=matrix::$matrix"
   check-matrix:
     runs-on: ubuntu-latest
     needs: matrix
