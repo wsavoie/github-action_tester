@@ -50,10 +50,11 @@ jobs:
 #        run: |
 #          echo "::set-output name=matrix::${JSON//'%'/'%25'}"
 
-#  job2:
-#    needs: job1
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
-#    steps:
-#    - run: build
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJSON(needs.job1.outputs.matrix)}}
+    steps:
+    - run: echo ${{ matrix.CUDA }}
+    - run: echo ${{ matrix}}
