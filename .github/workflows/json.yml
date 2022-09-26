@@ -29,13 +29,13 @@ jobs:
         id: package
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./test2.json
+          path: ./test.json
       - id: set-matrix
         run: |
           json='${{ steps.package.outputs.content }}'
-          echo "outputting json version"
+          echo "outputting json single line version"
           echo $json | jq -c
-          echo "outputting json single line"
+          echo "outputting yaml"
           echo $json | json2yaml
           echo 
           echo "set matrix"
