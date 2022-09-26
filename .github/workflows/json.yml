@@ -34,8 +34,8 @@ jobs:
         run: |
           json='${{ steps.package.outputs.content }}'
           echo "outputting json version"
-          echo $json | jq .
-          echo "outputting json"
+          echo $json | jq -c
+          echo "outputting json single line"
           echo $json | json2yaml
           echo 
           echo "set matrix"
