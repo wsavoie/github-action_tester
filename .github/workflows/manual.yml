@@ -52,8 +52,8 @@ jobs:
         run: |
           json='${{ steps.package.outputs.content }}'
           echo $json
-          matrix=$json | json2yaml
-          echo $matrix
+          #matrix=$json | json2yaml
+          #echo $matrix
           echo "::set-output name=matrix::$( echo '$json' )"
 
   setMatrix:
