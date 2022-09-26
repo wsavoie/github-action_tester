@@ -45,7 +45,7 @@ jobs:
           #matrix=$json | json2yaml
           #echo $matrix
           echo "::set-output name=matrix::$( echo '$json' )"
-          m=${{ fromJSON($json) }}
+          m= ${{ fromJSON($json) }}
     strategy: 
       matrix: $m
   #setMatrix:
