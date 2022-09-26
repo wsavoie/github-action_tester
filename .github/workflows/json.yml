@@ -28,7 +28,7 @@ jobs:
         id: package
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./test.json
+          path: ./real.json
       - id: set-matrix
         run: |
           json='${{ steps.package.outputs.content }}'
