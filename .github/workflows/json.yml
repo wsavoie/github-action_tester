@@ -34,11 +34,10 @@ jobs:
           json='${{steps.package.outputs.content}}'
           echo 'outputting raw content'
           echo $json
-          echo $json | jq -c . > blah
+          echo $json | jq -c . >> blah
           echo $blah
+          
           echo "set matrix"
-          var2= $(($json | jq -c .))
-          echo $var2
           #echo "GITHUB_SHA_SHORT=$(echo '$json' | jq -c .)" >> $GITHUB_ENV
           echo "finished saving into env"
           echo $env.GITHUB_SHA_SHORT
