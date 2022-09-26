@@ -39,7 +39,7 @@ jobs:
           echo $json | json2yaml
           
           echo "set matrix"
-          matrix: ${{fromJson($json)}}
+          matrix: ${{fromJSON(json)}}
           echo "print out matrix"
           echo $matrix     
      # - id: set-matrix
