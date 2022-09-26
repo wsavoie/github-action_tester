@@ -40,9 +40,10 @@ jobs:
       - name: Echo test.json
         run: |
           json='${{ steps.package.outputs.content }}'
+          #{ "IMAGE OS":{ "Ubuntu 18.04":"ubuntu18.04", "Ubuntu 20.04":"ubuntu20.04" }, "CUDA":{ "CUDA 10.2":"cuda10.2", "CUDA 11.3":"cuda11.3" } }
           echo $json 
           echo "trying sed"
-          json2= $json | ${sed -i 's~"~/"~g'}
+          json2='{\"IMAGE OS\":{ \"Ubuntu 18.04\":\"ubuntu18.04\", \"Ubuntu 20.04\":\"ubuntu20.04\" }, \"CUDA\":{ \"CUDA 10.2\":\"cuda10.2\", \"CUDA 11.3\":\"cuda11.3\" } }'
           echo $json2
           
 #      - id: set-matrix
