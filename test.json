@@ -1,10 +1,26 @@
 {
-  "IMAGE OS":[
-    "ubuntu18.04",
-    "ubuntu20.04"
+  "software":[
+    "pt1.8.1",
+    "pt1.12.1",
+    "tf1.15.5",
+    "tf2.9.2"
     ],
-  "CUDA":[
-    "cuda10.2",
-    "cuda11.3"
+  "ubuntu_version":[
+    "18.04",
+    "20.04"
+    ],
+  "cuda_version":[
+    "10.2",
+    "11.3.1"
+  ],
+  "exclude": [
+  {
+    "ubuntu_version": "20.04",
+    "cuda_version": "10.2"
+  },
+  {
+    "software": "pt1.8.1",
+    "cuda_version": "11.3.1"
+  }
   ]
 }
