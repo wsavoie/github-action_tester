@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  matrix:
+  GetFormattedJson:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -38,23 +38,23 @@ jobs:
           
   check-matrix:
     runs-on: ubuntu-latest
-    needs: matrix
+    needs: GetFormattedJson
     steps:
       - name: Check matrix definition
         run: |
-          matrix="${{ needs.matrix.outputs.matrix }}"
+          matrix="${{ needs.GetFormattedJson.outputs.matrix }}"
           echo "outputting raw value"
           echo $matrix
           echo "outputting pretty version"
           echo $matrix | jq
-          echo "outputting yaml"
-          echo $matrix | json2yaml
+          echo "outputting yml"
+          echo $matrix | json2yml
   backend:
     runs-on: ubuntu-latest
-    needs: matrix
+    needs: GetFormattedJson
     strategy:
       fail-fast: false
-      matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
+      matrix: ${{fromJson(needs.GetFormattedJson.outputs.matrix)}}
     steps: 
       - name: hi
         run: |
