@@ -37,6 +37,7 @@ jobs:
           echo $JSON
           echo $j2
           
+          echo "::set-output name=matrix::$( echo "$j2" )"
           #json2=${JSON//'%'/'%25'}
           #echo '::set-output name=matrix::$json2'
           #echo "print json without new lines"
