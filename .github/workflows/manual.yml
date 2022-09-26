@@ -48,7 +48,7 @@ jobs:
           
       - id: set-matrix
         run: |
-          echo "::set-output name=matrix::${json2}"
+          echo "::set-output name=matrix::${{json2}}"
 
   job2:
     needs: job1
