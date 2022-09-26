@@ -50,7 +50,8 @@ jobs:
         run: |
           matrix="${{ steps.package.outputs.content }}"
           echo $matrix
-          echo $matrix | jq .
+          echo "matrix set successfully"
+          #echo $matrix | jq .
           echo $matrix | json2yaml     
       
       #- id: set_var
