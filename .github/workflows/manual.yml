@@ -40,6 +40,7 @@ jobs:
       - name: Echo test.json
         run: |
           json='${{ steps.package.outputs.content }}'
+          echo $json
       - id: set-matrix
         run: |
           echo "::set-output name=matrix::${JSON//'%'/'%25'}"
