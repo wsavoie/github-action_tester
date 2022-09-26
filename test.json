@@ -1,9 +1,9 @@
 {
-  "package": [
-    "RMariaDB",
-    "RSQLite",
-    "RPostgres",
-    "RKazam",
-    "duckdb"
+  \"package\": [
+    \"RMariaDB\",
+    \"RSQLite\",
+    \"RPostgres\",
+    \"RKazam\",
+    \"duckdb\"
   ]
 }
