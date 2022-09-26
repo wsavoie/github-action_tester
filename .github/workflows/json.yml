@@ -58,3 +58,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.matrix.outputs.matrix)}}
+    steps: 
+      - name: hi
+        run: |
+          echo "hello"
