@@ -47,7 +47,7 @@ jobs:
           echo "::set-output name=matrix::$( echo '$json' )"
           m= ${{ fromJSON('${json}') }}
           echo "correctly used fromJSON"
-          echo $m
+          #echo $m
           
     #strategy: 
      # matrix: ${m}
