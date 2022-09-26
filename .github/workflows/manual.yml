@@ -23,8 +23,8 @@ jobs:
   testJob:
     name: Test
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{steps.package.outputs.matrix}}
+    #outputs:
+    #  matrix: ${{steps.package.outputs.matrix}}
 
     steps:
       - uses: actions/checkout@v3
@@ -42,11 +42,12 @@ jobs:
         run: |
           json='${{ steps.package.outputs.content }}'
           echo $json
-          #matrix=$json | json2yaml
-          #echo $matrix
-          echo "::set-output name=matrix::$( echo '$json' )"
-          m= ${{ fromJSON('${json}') }}
-          echo "correctly used fromJSON"
+          matrix=$json | json2yaml
+          echo $matrix
+          echo "finished task"
+          #echo "::set-output name=matrix::$( echo '$json' )"
+          #m= ${{ fromJSON(${json}) }}
+          #echo "correctly used fromJSON"
           #echo $m
           
     #strategy: 
