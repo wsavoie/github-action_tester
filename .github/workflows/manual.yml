@@ -45,15 +45,17 @@ jobs:
           #matrix=$json | json2yaml
           #echo $matrix
           echo "::set-output name=matrix::$( echo '$json' )"
-
-  setMatrix:
-    name: BuildMatrix
-    needs: testJob
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:  ${{ fromJSON(needs.testJob.outputs.matrix) }}
-    steps:
-    - run: echo ${{ matrix.CUDA }}
+          m=${{ fromJSON($json) }}
+    strategy: 
+      matrix: $m
+  #setMatrix:
+  #  name: BuildMatrix
+  #  needs: testJob
+  #  runs-on: ubuntu-latest
+  #  strategy:
+  #   matrix:  ${{ fromJSON(needs.testJob.outputs.matrix) }}
+  # steps:
+  # - run: echo ${{ matrix.CUDA }}
     
     
         
