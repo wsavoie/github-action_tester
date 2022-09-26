@@ -56,7 +56,7 @@ jobs:
     needs: check-matrix
     strategy:
       #fail-fast: false
-      matrix: ${{fromJSON(needs.check-matrix.outputs.yaml) }}
+      matrix: ${{needs.check-matrix.outputs.yaml}}
     steps: 
       - name: hi
         run: |
